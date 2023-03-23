@@ -10,6 +10,10 @@ const taskList = document.getElementById("taskList");
 const nameInput = document.getElementById("nameInput");
 const splashEl = document.querySelector(".splash");
 const greetingEl = document.getElementById("greeting");
+const todoToggle = document.getElementById("todoToggle");
+const newTodoContainer = document.getElementById("newTodoContainer");
+const newTaskInput = document.getElementById("newTaskInput");
+const newTaskList = document.getElementById("newTaskList");
 
 function updateGreeting(name) {
   greetingEl.textContent = `Hello, ${name}!`;
@@ -80,6 +84,44 @@ function addTask() {
   taskList.appendChild(task);
   taskInput.value = "";
 }
+
+function createNewTask(taskText) {
+  const task = document.createElement("li");
+  const checkbox = document.createElement("input");
+  const label = document.createElement("span");
+  const deleteButton = document.createElement("button");
+
+  checkbox.type = "checkbox";
+  checkbox.addEventListener("change", () => {
+    task.classList.toggle("checked");
+  });
+
+  label.textContent = taskText;
+  label.contentEditable = "true";
+
+  deleteButton.textContent = "X";
+  deleteButton.addEventListener("click", () => {
+    task.remove();
+  });
+
+  task.appendChild(checkbox);
+  task.appendChild(label);
+  task.appendChild(deleteButton);
+  newTaskList.appendChild(task);
+}
+
+function toggleTodo() {
+  newTodoContainer.classList.toggle("hidden");
+}
+
+todoToggle.addEventListener("click", toggleTodo);
+
+newTaskInput.addEventListener("keydown", (event) => {
+  if (event.key === "Enter" && newTaskInput.value.trim() !== "") {
+    createNewTask(newTaskInput.value);
+    newTaskInput.value = "";
+  }
+});
 
 function init() {
   updateTime();
