@@ -32,11 +32,16 @@ function updateTime() {
   const hours = now.getHours();
   const minutes = now.getMinutes();
   const seconds = now.getSeconds();
-  const date = now.toLocaleDateString();
+
+  const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  const month = monthNames[now.getMonth()];
+  const day = now.getDate();
+  const year = now.getFullYear();
 
   timeEl.textContent = `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
-  dateEl.textContent = date;
+  dateEl.textContent = `${month} ${day}, ${year}`;
 }
+
 
 
 function updateWeather() {
@@ -65,7 +70,7 @@ function updateQuote() {
 }
 
 function updateBackground() {
-  const unsplashApiKey = "8be1194f4124330d393a45134d07f1091502e64817bc316ecf4b49b8daea5262";
+  const unsplashApiKey = "zLhfmMi-a74UFzlBy8uHaK9xp1H6SedHWW8IZb3rrB0";
   const apiUrl = `https://api.unsplash.com/photos/random?orientation=landscape&query=nature&client_id=${unsplashApiKey}`;
 
   fetch(apiUrl)
