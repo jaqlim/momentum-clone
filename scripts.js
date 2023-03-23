@@ -8,6 +8,21 @@ const authorEl = document.getElementById("author");
 const taskInput = document.getElementById("taskInput");
 const taskList = document.getElementById("taskList");
 const backgroundImg = document.querySelector(".background img");
+const nameInput = document.getElementById("nameInput");
+const splashEl = document.querySelector(".splash");
+const greetingEl = document.getElementById("greeting");
+
+function updateGreeting(name) {
+  greetingEl.textContent = `Hello, ${name}!`;
+  greetingEl.classList.remove("hidden");
+  splashEl.classList.add("hidden");
+}
+
+nameInput.addEventListener("keydown", event => {
+  if (event.key === "Enter" && nameInput.value.trim() !== "") {
+    updateGreeting(nameInput.value.trim());
+  }
+});
 
 function updateTime() {
   const now = new Date();
@@ -54,6 +69,11 @@ function updateBackground() {
       backgroundImg.src = data.urls.regular;
     });
 }
+
+setInterval(() => {
+  updateBackground();
+  updateQuote();
+}, 60 * 1000);
 
 function addTask() {
   const task = document.createElement("li");
