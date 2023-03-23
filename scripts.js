@@ -31,11 +31,13 @@ function updateTime() {
   const now = new Date();
   const hours = now.getHours();
   const minutes = now.getMinutes();
+  const seconds = now.getSeconds();
   const date = now.toLocaleDateString();
 
-  timeEl.textContent = `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}`;
+  timeEl.textContent = `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
   dateEl.textContent = date;
 }
+
 
 function updateWeather() {
   // Add your API key and fetch the weather data
