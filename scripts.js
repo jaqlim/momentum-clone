@@ -22,8 +22,7 @@ function updateTime() {
 function updateWeather() {
   // Add your API key and fetch the weather data
   const apiKey = "46890e5e9527949e6b3bf156ff3e693a";
-  const apiUrl = 
-`https://api.openweathermap.org/data/2.5/weather?q=Manila&appid=${apiKey}&units=metric`;
+  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Manila&appid=${apiKey}&units=metric`;
 
   fetch(apiUrl)
     .then(response => response.json())
