@@ -78,7 +78,7 @@ body, html {
 
 .clock {
   font-size: 4rem;
-  margin-bottom: 0;
+  margin-bottom: 0.5rem;
 }
 
 .quote {
@@ -92,10 +92,10 @@ body, html {
 }
 
 .todo input {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.9);
   border: none;
   padding: 10px;
-  color: white;
+  color: black;
   width: 100%;
   font-size: 1.2rem;
 }
