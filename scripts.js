@@ -7,7 +7,6 @@ const quoteEl = document.getElementById("quote");
 const authorEl = document.getElementById("author");
 const taskInput = document.getElementById("taskInput");
 const taskList = document.getElementById("taskList");
-const backgroundImg = document.querySelector(".background img");
 const nameInput = document.getElementById("nameInput");
 const splashEl = document.querySelector(".splash");
 const greetingEl = document.getElementById("greeting");
@@ -66,7 +65,7 @@ function updateBackground() {
   fetch(apiUrl)
     .then(response => response.json())
     .then(data => {
-      backgroundImg.src = data.urls.regular;
+      document.documentElement.style.backgroundImage = `url(${data.urls.regular})`;
     });
 }
 

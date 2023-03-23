@@ -3,12 +3,16 @@ body, html {
   padding: 0;
   height: 100%;
   font-family: Arial, sans-serif;
+  background-image: url('background.jpg');
+  background-size: cover;
+  background-position: center;
 }
 
 .container {
   display: flex;
+  align-items: center;
+  justify-content: center;
   height: 100%;
-  background-size: cover;
   position: relative;
 }
 
@@ -20,6 +24,7 @@ body, html {
   height: 100%;
   overflow: hidden;
   z-index: -1;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .background img {
