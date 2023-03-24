@@ -45,7 +45,6 @@ function updateTime() {
 
 
 function updateWeather() {
-  // Add your API key and fetch the weather data
   const apiKey = "46890e5e9527949e6b3bf156ff3e693a";
   const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Manila&appid=${apiKey}&units=metric`;
 
@@ -58,7 +57,6 @@ function updateWeather() {
 }
 
 function updateQuote() {
-  // Fetch a random quote
   const apiUrl = "https://api.quotable.io/random";
 
   fetch(apiUrl)
@@ -90,6 +88,7 @@ function addTask() {
   task.textContent = taskInput.value;
   taskList.appendChild(task);
   taskInput.value = "";
+  saveTasks();
 }
 
 function createNewTask(taskText) {
@@ -115,6 +114,8 @@ function createNewTask(taskText) {
   task.appendChild(label);
   task.appendChild(deleteButton);
   newTaskList.appendChild(task);
+
+  saveNewTasks();
 }
 
 function toggleTodo() {
@@ -130,6 +131,37 @@ newTaskInput.addEventListener("keydown", (event) => {
   }
 });
 
+function saveName(name) {
+  localStorage.setItem("name", name);
+}
+
+function loadName() {
+  return localStorage.getItem("name");
+}
+
+function saveTasks() {
+  const tasks = Array.from(taskList.children).map(task => task.textContent);
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+function loadTasks() {
+  const tasks = JSON.parse(localStorage.getItem("tasks"));
+  return tasks || [];
+}
+
+function saveNewTasks() {
+  const tasks = Array.from(newTaskList.children).map(task => ({
+    text: task.textContent,
+    checked: task.classList.contains("checked"),
+  }));
+  localStorage.setItem("newTasks", JSON.stringify(tasks));
+}
+
+function loadNewTasks() {
+  const tasks = JSON.parse(localStorage.getItem("newTasks"));
+  return tasks || [];
+}
+
 function init() {
   updateTime();
   updateWeather();
@@ -141,6 +173,21 @@ function init() {
     if (event.key === "Enter" && taskInput.value.trim() !== "") {
       addTask();
     }
+  });
+
+  const storedName = loadName();
+  if (storedName) {
+    greetUser(storedName);
+  }
+  
+  const storedTasks = loadTasks();
+  storedTasks.forEach(task => {
+    addTask(task);
+  });
+
+  const storedNewTasks = loadNewTasks();
+  storedNewTasks.forEach(task => {
+    createNewTask(task.text, task.checked);
   });
 }
 
