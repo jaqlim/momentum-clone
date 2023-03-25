@@ -16,10 +16,23 @@ const newTaskInput = document.getElementById("newTaskInput");
 const newTaskList = document.getElementById("newTaskList");
 
 function updateGreeting(name) {
-  greetingEl.textContent = `Hello, ${name}!`;
+  const now = new Date();
+  const hours = now.getHours();
+  let greeting;
+
+  if (hours >= 5 && hours < 12) {
+    greeting = "Good Morning";
+  } else if (hours >= 12 && hours < 18) {
+    greeting = "Good Afternoon";
+  } else {
+    greeting = "Good Evening";
+  }
+
+  greetingEl.textContent = `${greeting}, ${name}!`;
   greetingEl.classList.remove("hidden");
   splashEl.classList.add("hidden");
 }
+
 
 nameInput.addEventListener("keydown", event => {
   if (event.key === "Enter" && nameInput.value.trim() !== "") {
