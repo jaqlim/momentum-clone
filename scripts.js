@@ -96,7 +96,7 @@ setInterval(() => {
   updateQuote();
 }, 60 * 1000);
 
-function addTask() {
+function addTask(taskText) {
   const task = document.createElement("li");
   task.textContent = taskInput.value;
   taskList.appendChild(task);
